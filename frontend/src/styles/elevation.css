@@ -1,0 +1,199 @@
+/* Sistema de Elevações - Meu Crediário */
+
+/* Variáveis de elevação */
+:root {
+  --elevation-1: 0px 1.0px 2.0px 0px rgba(0, 0, 0, 0.16);
+  --elevation-2: 0.0px 2.0px 4.0px 0px rgba(0, 0, 0, 0.16);
+  --elevation-3: 0.0px 4.0px 8.0px 0px rgba(0, 0, 0, 0.16);
+  --elevation-4: 0.0px 8.0px 16.0px 0px rgba(0, 0, 0, 0.16);
+  --elevation-5: 0.0px 12.0px 24.0px 0px rgba(0, 0, 0, 0.16);
+  --elevation-6: 0.0px 16.0px 32.0px 0px rgba(0, 0, 0, 0.16);
+  
+  /* Elevação zero (sem sombra) */
+  --elevation-0: none;
+}
+
+/* Classes de elevação */
+.elevation-0 { box-shadow: var(--elevation-0) !important; }
+.elevation-1 { box-shadow: var(--elevation-1) !important; }
+.elevation-2 { box-shadow: var(--elevation-2) !important; }
+.elevation-3 { box-shadow: var(--elevation-3) !important; }
+.elevation-4 { box-shadow: var(--elevation-4) !important; }
+.elevation-5 { box-shadow: var(--elevation-5) !important; }
+.elevation-6 { box-shadow: var(--elevation-6) !important; }
+
+/* Classes de elevação com hover */
+.elevation-hover-1:hover { box-shadow: var(--elevation-1) !important; }
+.elevation-hover-2:hover { box-shadow: var(--elevation-2) !important; }
+.elevation-hover-3:hover { box-shadow: var(--elevation-3) !important; }
+.elevation-hover-4:hover { box-shadow: var(--elevation-4) !important; }
+.elevation-hover-5:hover { box-shadow: var(--elevation-5) !important; }
+.elevation-hover-6:hover { box-shadow: var(--elevation-6) !important; }
+
+/* Classes de elevação com transição suave */
+.elevation-transition {
+  transition: box-shadow 0.3s ease;
+}
+
+/* Classes combinadas de elevação com hover e transição */
+.elevation-1-hover { 
+  box-shadow: var(--elevation-1) !important; 
+  transition: box-shadow 0.3s ease;
+}
+.elevation-1-hover:hover { 
+  box-shadow: var(--elevation-2) !important; 
+}
+
+.elevation-2-hover { 
+  box-shadow: var(--elevation-2) !important; 
+  transition: box-shadow 0.3s ease;
+}
+.elevation-2-hover:hover { 
+  box-shadow: var(--elevation-3) !important; 
+}
+
+.elevation-3-hover { 
+  box-shadow: var(--elevation-3) !important; 
+  transition: box-shadow 0.3s ease;
+}
+.elevation-3-hover:hover { 
+  box-shadow: var(--elevation-4) !important; 
+}
+
+.elevation-4-hover { 
+  box-shadow: var(--elevation-4) !important; 
+  transition: box-shadow 0.3s ease;
+}
+.elevation-4-hover:hover { 
+  box-shadow: var(--elevation-5) !important; 
+}
+
+.elevation-5-hover { 
+  box-shadow: var(--elevation-5) !important; 
+  transition: box-shadow 0.3s ease;
+}
+.elevation-5-hover:hover { 
+  box-shadow: var(--elevation-6) !important; 
+}
+
+/* Classes para elementos interativos */
+.card-elevation-1 {
+  background-color: rgba(255, 255, 255, 1.0);
+  box-shadow: var(--elevation-1);
+  transition: box-shadow 0.3s ease;
+}
+
+.card-elevation-1:hover {
+  box-shadow: var(--elevation-2);
+}
+
+.card-elevation-2 {
+  background-color: rgba(255, 255, 255, 1.0);
+  box-shadow: var(--elevation-2);
+  transition: box-shadow 0.3s ease;
+}
+
+.card-elevation-2:hover {
+  box-shadow: var(--elevation-3);
+}
+
+.card-elevation-3 {
+  background-color: rgba(255, 255, 255, 1.0);
+  box-shadow: var(--elevation-3);
+  transition: box-shadow 0.3s ease;
+}
+
+.card-elevation-3:hover {
+  box-shadow: var(--elevation-4);
+}
+
+.card-elevation-4 {
+  background-color: rgba(255, 255, 255, 1.0);
+  box-shadow: var(--elevation-4);
+  transition: box-shadow 0.3s ease;
+}
+
+.card-elevation-4:hover {
+  box-shadow: var(--elevation-5);
+}
+
+.card-elevation-5 {
+  background-color: rgba(255, 255, 255, 1.0);
+  box-shadow: var(--elevation-5);
+  transition: box-shadow 0.3s ease;
+}
+
+.card-elevation-5:hover {
+  box-shadow: var(--elevation-6);
+}
+
+.card-elevation-6 {
+  background-color: rgba(255, 255, 255, 1.0);
+  box-shadow: var(--elevation-6);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Classes para botões com elevação */
+.btn-elevation-1 {
+  box-shadow: var(--elevation-1);
+  transition: box-shadow 0.3s ease;
+}
+
+.btn-elevation-1:hover {
+  box-shadow: var(--elevation-2);
+}
+
+.btn-elevation-2 {
+  box-shadow: var(--elevation-2);
+  transition: box-shadow 0.3s ease;
+}
+
+.btn-elevation-2:hover {
+  box-shadow: var(--elevation-3);
+}
+
+.btn-elevation-3 {
+  box-shadow: var(--elevation-3);
+  transition: box-shadow 0.3s ease;
+}
+
+.btn-elevation-3:hover {
+  box-shadow: var(--elevation-4);
+}
+
+/* Classes para modais e overlays */
+.modal-elevation {
+  box-shadow: var(--elevation-6);
+}
+
+.overlay-elevation {
+  box-shadow: var(--elevation-5);
+}
+
+/* Classes para elementos flutuantes */
+.floating-elevation-1 {
+  box-shadow: var(--elevation-1);
+  transition: box-shadow 0.3s ease;
+}
+
+.floating-elevation-1:hover {
+  box-shadow: var(--elevation-3);
+}
+
+.floating-elevation-2 {
+  box-shadow: var(--elevation-2);
+  transition: box-shadow 0.3s ease;
+}
+
+.floating-elevation-2:hover {
+  box-shadow: var(--elevation-4);
+}
+
+.floating-elevation-3 {
+  box-shadow: var(--elevation-3);
+  transition: box-shadow 0.3s ease;
+}
+
+.floating-elevation-3:hover {
+  box-shadow: var(--elevation-5);
+}

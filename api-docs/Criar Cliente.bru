@@ -1,0 +1,122 @@
+meta {
+  name: Criar Cliente
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:3001/api/clientes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "nome": "Joao",
+    "cpf": "123.456.789-11",
+    "email": "maria.silva@email.com",
+    "telefone": "(11) 99999-1234",
+    "endereco": {
+      "rua": "Rua das Flores",
+      "numero": "123",
+      "bairro": "Centro",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "cep": "01234-567"
+    },
+    "historico_compras": [
+      {
+        "id": 1,
+        "valor": 1785.36,
+        "data": "2019-05-08",
+        "contrato": "0480000000000000000001669920190508",
+        "parcelas": [
+          {
+            "valorvencimento": 148.78,
+            "datavencimento": "2019-06-22",
+            "dataultimopagamento": "2019-06-10",
+            "totalpago": 148.78,
+            "capitalaberto": 0
+          },
+          {
+            "valorvencimento": 148.78,
+            "datavencimento": "2019-07-22",
+            "dataultimopagamento": "2019-07-10",
+            "totalpago": 148.78,
+            "capitalaberto": 0
+          },
+          {
+            "valorvencimento": 148.78,
+            "datavencimento": "2019-08-22",
+            "dataultimopagamento": "2019-08-10",
+            "totalpago": 148.78,
+            "capitalaberto": 0
+          },
+          {
+            "valorvencimento": 148.78,
+            "datavencimento": "2019-09-22",
+            "dataultimopagamento": "2019-09-11",
+            "totalpago": 148.78,
+            "capitalaberto": 0
+          },
+          {
+            "valorvencimento": 148.78,
+            "datavencimento": "2019-10-22",
+            "dataultimopagamento": "2019-10-04",
+            "totalpago": 148.78,
+            "capitalaberto": 0
+          },
+          {
+            "valorvencimento": 148.78,
+            "datavencimento": "2019-11-22",
+            "dataultimopagamento": "2019-11-07",
+            "totalpago": 148.78,
+            "capitalaberto": 0
+          },
+          {
+            "valorvencimento": 148.78,
+            "datavencimento": "2019-12-22",
+            "dataultimopagamento": "2019-12-03",
+            "totalpago": 148.78,
+            "capitalaberto": 0
+          },
+          {
+            "valorvencimento": 148.78,
+            "datavencimento": "2020-01-22",
+            "dataultimopagamento": "2020-01-10",
+            "totalpago": 148.78,
+            "capitalaberto": 0
+          },
+          {
+            "valorvencimento": 148.78,
+            "datavencimento": "2020-02-22",
+            "dataultimopagamento": "2020-02-12",
+            "totalpago": 148.78,
+            "capitalaberto": 0
+          },
+          {
+            "valorvencimento": 148.78,
+            "datavencimento": "2020-03-22",
+            "dataultimopagamento": "2020-03-17",
+            "totalpago": 148.78,
+            "capitalaberto": 0
+          },
+          {
+            "valorvencimento": 148.78,
+            "datavencimento": "2020-04-22",
+            "dataultimopagamento": "2020-03-17",
+            "totalpago": 148.78,
+            "capitalaberto": 0
+          },
+          {
+            "valorvencimento": 148.78,
+            "datavencimento": "2020-05-22",
+            "dataultimopagamento": "2020-03-17",
+            "totalpago": 148.78,
+            "capitalaberto": 0
+          }
+        ]
+      }
+    ]
+  }
+}

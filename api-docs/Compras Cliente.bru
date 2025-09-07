@@ -1,0 +1,15 @@
+meta {
+  name: Compras Cliente
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:3001/api/clientes/:id/compras
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 1
+}

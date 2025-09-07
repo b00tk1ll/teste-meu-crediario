@@ -1,0 +1,177 @@
+/* Variáveis de Cores - Meu Crediário */
+
+:root {
+  /* Cores Primárias */
+  --primary-lightest: #8CBFB7;
+  --primary-light: #00856E;
+  --primary: #006151;
+  --primary-dark: #004A3F;
+
+  /* Cores Secundárias */
+  --secondary-light: #02E09F;
+  --secondary: #01865F;
+  --secondary-dark: #016F4F;
+
+  /* Cores Neutras */
+  --white: #FFFFFF;
+  --white-dark: #F5F5F5;
+  --gray-light: #DDDDDD;
+  --gray: #CCCCCC;
+  --gray-darkest: #333333;
+  --gray-dark: #BBBBBB;
+
+  /* Cores Utilitárias */
+  --background: #FFFFFF;
+  --text: #505050;
+
+  /* Cores de Alerta - Info */
+  --info-lightest: #EAF4FB;
+  --info: #0066AB;
+  --info-dark: #003D66;
+
+  /* Cores de Alerta - Success */
+  --success-lightest: #E6FFF7;
+  --success-light: #D7F4F0;
+  --success: #006151;
+  --success-dark: #004A3F;
+
+  /* Cores de Alerta - Alert */
+  --alert-lightest: #FFF9E5;
+  --alert-light: #FFEBCC;
+  --alert: #F6AB35;
+  --alert-dark: #734B0C;
+
+  /* Cores de Alerta - Alert Alternative */
+  --alert-alt-lightest: #FFFAE0;
+  --alert-alt-light: #FEF5C8;
+  --alert-alt: #FCD307;
+  --alert-alt-dark: #5C4D00;
+
+  /* Cores de Alerta - Danger */
+  --danger-lightest: #FFE5E6;
+  --danger: #C91D1D;
+  --danger-dark: #801212;
+}
+
+/* Classes utilitárias para cores de texto */
+.text-primary { color: var(--primary) !important; }
+.text-primary-light { color: var(--primary-light) !important; }
+.text-primary-lightest { color: var(--primary-lightest) !important; }
+.text-primary-dark { color: var(--primary-dark) !important; }
+
+.text-secondary { color: var(--secondary) !important; }
+.text-secondary-light { color: var(--secondary-light) !important; }
+.text-secondary-dark { color: var(--secondary-dark) !important; }
+
+.text-white { color: var(--white) !important; }
+.text-white-dark { color: var(--white-dark) !important; }
+.text-gray-light { color: var(--gray-light) !important; }
+.text-gray { color: var(--gray) !important; }
+.text-gray-darkest { color: var(--gray-darkest) !important; }
+
+.text-background { color: var(--background) !important; }
+.text-text { color: var(--text) !important; }
+
+.text-info { color: var(--info) !important; }
+.text-info-lightest { color: var(--info-lightest) !important; }
+.text-info-dark { color: var(--info-dark) !important; }
+
+.text-success { color: var(--success) !important; }
+.text-success-lightest { color: var(--success-lightest) !important; }
+.text-success-light { color: var(--success-light) !important; }
+.text-success-dark { color: var(--success-dark) !important; }
+
+.text-alert { color: var(--alert) !important; }
+.text-alert-lightest { color: var(--alert-lightest) !important; }
+.text-alert-light { color: var(--alert-light) !important; }
+.text-alert-dark { color: var(--alert-dark) !important; }
+
+.text-alert-alt { color: var(--alert-alt) !important; }
+.text-alert-alt-lightest { color: var(--alert-alt-lightest) !important; }
+.text-alert-alt-light { color: var(--alert-alt-light) !important; }
+.text-alert-alt-dark { color: var(--alert-alt-dark) !important; }
+
+.text-danger { color: var(--danger) !important; }
+.text-danger-lightest { color: var(--danger-lightest) !important; }
+.text-danger-dark { color: var(--danger-dark) !important; }
+
+/* Classes utilitárias para cores de fundo */
+.bg-primary { background-color: var(--primary) !important; }
+.bg-primary-light { background-color: var(--primary-light) !important; }
+.bg-primary-lightest { background-color: var(--primary-lightest) !important; }
+.bg-primary-dark { background-color: var(--primary-dark) !important; }
+
+.bg-secondary { background-color: var(--secondary) !important; }
+.bg-secondary-light { background-color: var(--secondary-light) !important; }
+.bg-secondary-dark { background-color: var(--secondary-dark) !important; }
+
+.bg-white { background-color: var(--white) !important; }
+.bg-white-dark { background-color: var(--white-dark) !important; }
+.bg-gray-light { background-color: var(--gray-light) !important; }
+.bg-gray { background-color: var(--gray) !important; }
+.bg-gray-darkest { background-color: var(--gray-darkest) !important; }
+
+.bg-background { background-color: var(--background) !important; }
+.bg-text { background-color: var(--text) !important; }
+
+.bg-info { background-color: var(--info) !important; }
+.bg-info-lightest { background-color: var(--info-lightest) !important; }
+.bg-info-dark { background-color: var(--info-dark) !important; }
+
+.bg-success { background-color: var(--success) !important; }
+.bg-success-lightest { background-color: var(--success-lightest) !important; }
+.bg-success-light { background-color: var(--success-light) !important; }
+.bg-success-dark { background-color: var(--success-dark) !important; }
+
+.bg-alert { background-color: var(--alert) !important; }
+.bg-alert-lightest { background-color: var(--alert-lightest) !important; }
+.bg-alert-light { background-color: var(--alert-light) !important; }
+.bg-alert-dark { background-color: var(--alert-dark) !important; }
+
+.bg-alert-alt { background-color: var(--alert-alt) !important; }
+.bg-alert-alt-lightest { background-color: var(--alert-alt-lightest) !important; }
+.bg-alert-alt-light { background-color: var(--alert-alt-light) !important; }
+.bg-alert-alt-dark { background-color: var(--alert-alt-dark) !important; }
+
+.bg-danger { background-color: var(--danger) !important; }
+.bg-danger-lightest { background-color: var(--danger-lightest) !important; }
+.bg-danger-dark { background-color: var(--danger-dark) !important; }
+
+/* Classes utilitárias para bordas */
+.border-primary { border-color: var(--primary) !important; }
+.border-primary-light { border-color: var(--primary-light) !important; }
+.border-primary-lightest { border-color: var(--primary-lightest) !important; }
+.border-primary-dark { border-color: var(--primary-dark) !important; }
+
+.border-secondary { border-color: var(--secondary) !important; }
+.border-secondary-light { border-color: var(--secondary-light) !important; }
+.border-secondary-dark { border-color: var(--secondary-dark) !important; }
+
+.border-white { border-color: var(--white) !important; }
+.border-white-dark { border-color: var(--white-dark) !important; }
+.border-gray-light { border-color: var(--gray-light) !important; }
+.border-gray { border-color: var(--gray) !important; }
+.border-gray-darkest { border-color: var(--gray-darkest) !important; }
+
+.border-info { border-color: var(--info) !important; }
+.border-info-lightest { border-color: var(--info-lightest) !important; }
+.border-info-dark { border-color: var(--info-dark) !important; }
+
+.border-success { border-color: var(--success) !important; }
+.border-success-lightest { border-color: var(--success-lightest) !important; }
+.border-success-light { border-color: var(--success-light) !important; }
+.border-success-dark { border-color: var(--success-dark) !important; }
+
+.border-alert { border-color: var(--alert) !important; }
+.border-alert-lightest { border-color: var(--alert-lightest) !important; }
+.border-alert-light { border-color: var(--alert-light) !important; }
+.border-alert-dark { border-color: var(--alert-dark) !important; }
+
+.border-alert-alt { border-color: var(--alert-alt) !important; }
+.border-alert-alt-lightest { border-color: var(--alert-alt-lightest) !important; }
+.border-alert-alt-light { border-color: var(--alert-alt-light) !important; }
+.border-alert-alt-dark { border-color: var(--alert-alt-dark) !important; }
+
+.border-danger { border-color: var(--danger) !important; }
+.border-danger-lightest { border-color: var(--danger-lightest) !important; }
+.border-danger-dark { border-color: var(--danger-dark) !important; }

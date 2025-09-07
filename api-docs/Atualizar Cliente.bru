@@ -1,0 +1,17 @@
+meta {
+  name: Atualizar Cliente
+  type: http
+  seq: 8
+}
+
+put {
+  url: http://localhost:3001/api/clientes/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  "nome": "João Silva Atualizado",
+  "email": "joao.silva.atualizado@email.com",
+  "telefone": "(11) 88888-8888"
+}
