@@ -12,7 +12,8 @@
           variant="primary"
           icon="calculator"
           @click="calcularEndividamento"
-          :disabled="loading || !cliente"
+          :disabled="loadingEndividamento || !cliente"
+          :loading="loadingEndividamento"
         >
           Calcular Endividamento
         </Button>
@@ -21,6 +22,17 @@
 
     <!-- Loading overlay -->
     <Loading :show="loading" message="Carregando dados do cliente..." />
+
+    <!-- Mensagem de erro geral -->
+    <div v-if="error && !loading" class="col col-12">
+      <div class="alert alert-danger alert-dismissible fade show">
+        {{ error }}
+        <button @click="error = null" class="btn-close" aria-label="Fechar"></button>
+        <button @click="loadCliente" class="btn btn-sm btn-outline-danger ms-2">
+          Tentar novamente
+        </button>
+      </div>
+    </div>
 
     <!-- Resultado do cálculo de endividamento -->
     <div v-if="resultadoEndividamento" class="col col-12">
@@ -151,25 +163,37 @@
         <h4>Histórico de Compras</h4>
 
         <!-- Loading compras -->
-        <div v-if="loadingCompras" class="text-center py-4">
-          <p>Carregando histórico de compras...</p>
+        <div v-if="loadingCompras">
+          <Loading :show="loadingCompras" message="Carregando histórico de compras..." />
         </div>
 
         <!-- Erro compras -->
-        <div v-else-if="errorCompras" class="alert alert-danger">
+        <div v-else-if="errorCompras" class="alert alert-danger alert-dismissible fade show">
           {{ errorCompras }}
+          <button @click="errorCompras = null" class="btn-close" aria-label="Fechar"></button>
+          <button @click="loadComprasCliente" class="btn btn-sm btn-outline-danger ms-2">
+            Tentar novamente
+          </button>
         </div>
 
         <!-- Tabela de compras -->
-        <Table
-          v-else
-          :columns="columnsCompras"
-          :data="compras"
-          :actions="actionsCompras"
-          :sortableColumns="sortableColumnsCompras"
-          :sortConfig="sortConfigCompras"
-          @action="handleCompraAction"
-        />
+        <div v-else-if="compras.length > 0">
+          <Table
+            :columns="columnsCompras"
+            :data="compras"
+            :actions="actionsCompras"
+            :sortableColumns="sortableColumnsCompras"
+            :sortConfig="sortConfigCompras"
+            @action="handleCompraAction"
+          />
+        </div>
+
+        <!-- Mensagem quando não há compras -->
+        <div v-else class="text-center py-5">
+          <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+          <h5 class="text-muted">Nenhuma compra encontrada</h5>
+          <p class="text-muted">Este cliente ainda não possui histórico de compras.</p>
+        </div>
       </div>
     </div>
   </GridSystem>
@@ -227,25 +251,8 @@ import GridSystem from '../components/Layout/GridSystem.vue'
 import Table from '../components/UI/Table.vue'
 import Button from '../components/UI/Button.vue'
 import Loading from '../components/UI/Loading.vue'
-import { ClienteService, type Cliente } from '../services/clienteService'
+import { ClienteService, type Cliente, type Compra, type Parcela } from '../services/clienteService'
 import Card from '../components/UI/Card.vue'
-
-// Tipos locais necessários
-interface Parcela {
-  valorvencimento: number;
-  datavencimento: string;
-  dataultimopagamento: string;
-  totalpago: number;
-  capitalaberto: number;
-}
-
-interface Compra {
-  id: number;
-  valor: number;
-  data: string;
-  contrato: string;
-  parcelas: Parcela[];
-}
 
 // Estado da aplicação
 const route = useRoute()
@@ -253,6 +260,8 @@ const cliente = ref<Cliente | null>(null)
 const compras = ref<Compra[]>([])
 const loading = ref(false)
 const loadingCompras = ref(false)
+const loadingEndividamento = ref(false)
+const error = ref<string | null>(null)
 const errorCompras = ref<string | null>(null)
 const resultadoEndividamento = ref<{ mes: string; total: number } | null>(null)
 
@@ -343,14 +352,15 @@ const loadCliente = async () => {
   if (!clienteId) return
 
   loading.value = true
+  error.value = null
 
   try {
     const data = await ClienteService.getCliente(parseInt(clienteId))
     cliente.value = data
     await loadComprasCliente()
-  } catch (error) {
-    console.error('Erro ao carregar cliente:', error)
-    errorCompras.value = 'Erro ao carregar dados do cliente'
+  } catch (err) {
+    console.error('Erro ao carregar cliente:', err)
+    error.value = err instanceof Error ? err.message : 'Erro ao carregar dados do cliente'
   } finally {
     loading.value = false
   }
@@ -365,14 +375,11 @@ const loadComprasCliente = async () => {
   errorCompras.value = null
 
   try {
-    // Como não temos um método específico para compras no ClienteService,
-    // vamos usar os dados já carregados do cliente
-    if (cliente.value?.historico_compras) {
-      compras.value = cliente.value.historico_compras
-    }
-  } catch (error) {
-    console.error('Erro ao carregar compras:', error)
-    errorCompras.value = 'Erro ao carregar histórico de compras'
+    const comprasData = await ClienteService.getClienteCompras(parseInt(clienteId))
+    compras.value = comprasData
+  } catch (err) {
+    console.error('Erro ao carregar compras:', err)
+    errorCompras.value = err instanceof Error ? err.message : 'Erro ao carregar histórico de compras'
   } finally {
     loadingCompras.value = false
   }
@@ -382,28 +389,17 @@ const loadComprasCliente = async () => {
 const calcularEndividamento = async () => {
   if (!cliente.value) return
 
-  loading.value = true
+  loadingEndividamento.value = true
+  error.value = null
 
   try {
-    const response = await fetch('/api/endividamento/calcular', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ cliente: cliente.value })
-    })
-
-    if (!response.ok) {
-      throw new Error('Erro ao calcular endividamento')
-    }
-
-    const data = await response.json()
-    resultadoEndividamento.value = data
-  } catch (error) {
-    console.error('Erro ao calcular endividamento:', error)
-    alert('Erro ao calcular endividamento. Tente novamente.')
+    const resultado = await ClienteService.calcularEndividamento(cliente.value)
+    resultadoEndividamento.value = resultado
+  } catch (err) {
+    console.error('Erro ao calcular endividamento:', err)
+    error.value = err instanceof Error ? err.message : 'Erro ao calcular endividamento'
   } finally {
-    loading.value = false
+    loadingEndividamento.value = false
   }
 }
 
@@ -714,6 +710,35 @@ onMounted(() => {
   }
 }
 
+/* Estilos das mensagens */
+.alert {
+  border-radius: 8px;
+  border: none;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.btn-close:hover {
+  opacity: 1;
+}
+
+/* Loading state */
+.spinner-border {
+  width: 2rem;
+  height: 2rem;
+}
+
 /* Responsividade para o header */
 @media (max-width: 768px) {
   .d-flex.justify-content-between {
@@ -729,6 +754,11 @@ onMounted(() => {
   .d-flex.justify-content-between > div:last-child {
     display: flex;
     justify-content: flex-start;
+  }
+
+  .spinner-border {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
 
